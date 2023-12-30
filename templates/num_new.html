@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Postni qo'shish</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-danger ml-2" type="submit">Saqlash</button>
+        <button><a href="{% url 'home' %}">Bosh sahifa</a></button>
+    </form>
+
+{% endblock content %}

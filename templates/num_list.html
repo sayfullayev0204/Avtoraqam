@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Postlar{% endblock title %}
+
+{% block content %}
+{% load hitcount_tags %}
+
+<h1 style="width: 100%;">Izlash natijalari <a href="{% url 'home' %}">Bosh sahifa</a></h1>
+
+
+{% for num in object_list %}
+    
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: rgba(94, 147, 250, 0.52);
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-box {
+            display: flex;
+            align-items: center;
+            border: 2px solid black;
+            background-color: white;
+            height: 50px;
+            border-radius: 10px;
+            padding: 0 10px 0 0;
+        }
+
+        .form-box img {
+            width: 20px;
+        }
+
+        .form-box input {
+            border: none;
+            background-color: inherit;
+            height: 100%;
+            outline: none;
+            font-size: 28px;
+        }
+
+        .form-box input.number-inp {
+            border-right: 2px solid black;
+            width: 50px;
+            border-radius: 10px 0 0 10px;
+            text-align: center;
+        }
+
+        .form-box span {
+            border: 2px solid black;
+            position: relative;
+            left: 5px;
+            border-radius: 50%;
+        }
+
+        .form-box input.form-input {
+            width: 150px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .container {
+            width: 245px;
+        }
+        
+        .datas {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .wrapper {
+            background-color: #d9d9d9;
+            padding: 20px;
+            width: max-content;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .datas p span:nth-child(1) {
+            color: rgb(0, 193, 0);
+        }
+
+        .datas p span:nth-child(2) {
+            color: red;
+        }
+
+        .datas p {
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            color: #fff;
+            background-color: green;
+            padding: 10px 20px;
+            border: none;
+            width: 100px;
+            margin: auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+
+    </style>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="form-box">
+                <span></span>
+                
+                    <input type="text" class="number-inp" placeholder="{{num.Hududiy_raqam}}" name="number" value="{{ num.some_field }}">
+                    <input type="text" class="form-input" placeholder="{{num.Nomer}}">
+                
+                
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Flag_of_Uzbekistan.svg/375px-Flag_of_Uzbekistan.svg.png" alt="flag">
+                    <p>UZ</p>
+                </div>
+                <span></span>
+            </div>
+        </div>
+        <div class="datas">
+            <p><span>Boshlanish sanasi</span> <span>{{num.Boshlanish_sanasi}}</span></p>
+            <p><span>Boshlanish narxi</span> <span>{{num.Boshlanish_narxi}} so'm </span></p>
+            <p><span>To'liq ma'lumot</span>  <span><a href="{% url 'num_detail' num.pk %}">Batafsil</a></span></p>
+            <span>
+            </span>
+        </div>
+        <button><a href="https://t.me/Onl1ne_auksion " style="color: #fff;">Admin</a></button>
+        <div >
+            <p><span>👁 {{ num.hit_count.hits }}</span></p>
+        </div>
+    </div>
+</body>
+
+{% endfor %}
+
+{% endblock content %}
